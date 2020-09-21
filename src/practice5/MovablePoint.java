@@ -1,7 +1,7 @@
 package practice5;
 
 public class MovablePoint implements Movable {
-    private double x,y,xSpeed,ySpeed;
+    private double x,y;
 
     public MovablePoint(double x, double y) {
         this.x = x;
@@ -30,4 +30,11 @@ public class MovablePoint implements Movable {
         y+=dy;
     }
 
+    @Override
+    public String toString() {
+        return "MovablePoint{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

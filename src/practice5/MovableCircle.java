@@ -1,30 +1,27 @@
 package practice5;
 
 public class MovableCircle extends Circle implements Movable {
-    private double x,y;
     MovablePoint center;
 
     public MovableCircle(double x, double y, double radius) {
         super(radius);
-        this.x = x;
-        this.y = y;
         center = new MovablePoint(x,y);
     }
 
     public double getX() {
-        return x;
+        return center.getX();
     }
 
     public void setX(double x) {
-        this.x = x;
+        center.setX(x);
     }
 
     public double getY() {
-        return y;
+        return center.getY();
     }
 
     public void setY(double y) {
-        this.y = y;
+        center.setY(y);
     }
 
     @Override
