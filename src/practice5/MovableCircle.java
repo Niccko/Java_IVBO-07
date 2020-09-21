@@ -1,16 +1,14 @@
 package practice5;
 
-public class MovableCircle implements Movable {
-    private double x,y,xSpeed,ySpeed,radius;
+public class MovableCircle extends Circle implements Movable {
+    private double x,y;
     MovablePoint center;
 
-    public MovableCircle(double x, double y, double xSpeed, double ySpeed, double radius) {
+    public MovableCircle(double x, double y, double radius) {
+        super(radius);
         this.x = x;
         this.y = y;
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
-        this.radius = radius;
-        center = new MovablePoint(x,y,xSpeed,ySpeed);
+        center = new MovablePoint(x,y);
     }
 
     public double getX() {
@@ -29,39 +27,9 @@ public class MovableCircle implements Movable {
         this.y = y;
     }
 
-    public double getxSpeed() {
-        return xSpeed;
-    }
-
-    public void setxSpeed(double xSpeed) {
-        this.xSpeed = xSpeed;
-    }
-
-    public double getySpeed() {
-        return ySpeed;
-    }
-
-    public void setySpeed(double ySpeed) {
-        this.ySpeed = ySpeed;
-    }
-
     @Override
-    public void moveUp() {
-        center.moveUp();
+    public void move(int dx,int dy) {
+        center.move(dx,dy);
     }
 
-    @Override
-    public void moveDown() {
-        center.moveDown();
-    }
-
-    @Override
-    public void moveLeft() {
-        center.moveLeft();
-    }
-
-    @Override
-    public void moveRight() {
-        center.moveRight();
-    }
 }
