@@ -1,22 +1,47 @@
 package practice78;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Company {
     private List<Employee> employees = new LinkedList<>();
-    void hire(Employee employee){employees.add(employee);};
+    void hire(Employee employee){
+        employees.add(employee);
+
+    };
     void hireAll(List<Employee> employeeList){
-        for (Employee emp:
-             employeeList) {
-            employees.add(emp);
-        }
+        employees.addAll(employeeList);
     }
-    void fire(String firstName, String lastName){
-        employees.removeIf(emp -> emp.getFirstName().equals(firstName) && emp.getLastName().equals(lastName));
+    void fire(int index){
+        employees.remove(index);
     }
 
     double getIncome(){
         return Math.random()*2*1e7;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    List<Employee> getTopSalaryStaff(int count){
+        List<Employee> sortedEmployees = new LinkedList<>(employees);
+        for (int i = 0; i < ; i++) {
+            
+        }
+        return sortedEmployees;
+    }
+    List<Employee> getLowSalaryStaff(int count){
+        List<Employee> sortedEmployees = new LinkedList<>(employees);
+        sortedEmployees.sort(new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                if (o1.getPosition().calcSalary(o1.getSalary()) > o2.getPosition().calcSalary(o2.getSalary())) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        });
+        return sortedEmployees;
     }
 }

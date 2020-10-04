@@ -1,9 +1,10 @@
 package practice78;
 
-public class Operator extends Employee implements EmployeePosition {
+public class Operator implements EmployeePosition {
     Company company;
-    public Operator(String firstName, String lastName, double salary, Company company) {
-        super(firstName, lastName, salary,company);
+
+    public Operator(Company company) {
+        this.company = company;
     }
 
     @Override

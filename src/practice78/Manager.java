@@ -1,10 +1,10 @@
 package practice78;
 
-public class Manager extends Employee implements EmployeePosition {
+public class Manager implements EmployeePosition {
+    Company company;
 
-
-    public Manager(String firstName, String lastName, double salary, Company company) {
-        super(firstName, lastName, salary,company);
+    public Manager(Company company) {
+        this.company = company;
     }
 
     @Override
