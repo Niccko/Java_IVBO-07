@@ -4,6 +4,7 @@ public class Employee{
     private String firstName,lastName;
     private double salary;
     private EmployeePosition position;
+    private int id;
 
     public Employee(String firstName, String lastName, double salary, EmployeePosition position) {
         this.firstName = firstName;
@@ -11,6 +12,10 @@ public class Employee{
         this.salary = salary;
         this.position = position;
     }
+
+    public void setId(int id) { this.id = id; }
+
+    public int getId() { return id; }
 
     public String getFirstName() {
         return firstName;
@@ -35,6 +40,8 @@ public class Employee{
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    public double getEmployeeSalary(){ return position.calcSalary(salary); }
 
     @Override
     public String toString() {

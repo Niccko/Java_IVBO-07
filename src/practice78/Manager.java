@@ -2,14 +2,19 @@ package practice78;
 
 public class Manager implements EmployeePosition {
     Company company;
-
+    double income;
     public Manager(Company company) {
+        income = Math.random()*25000+115000;
         this.company = company;
     }
 
+    public double getIncome() {
+        return income;
+    }
+
     @Override
-    public double calcSalary(double baseSalary) {
-        return baseSalary+Math.random()*1250+5750;
+    public int calcSalary(double baseSalary) {
+        return (int)(baseSalary+0.05*income);
     }
 
     @Override

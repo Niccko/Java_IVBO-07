@@ -13,7 +13,7 @@ public class Operator implements EmployeePosition {
     }
 
     @Override
-    public double calcSalary(double baseSalary) {
-        return baseSalary;
+    public int calcSalary(double baseSalary) {
+        return (int)baseSalary;
     }
 }
