@@ -1,7 +1,7 @@
 package practice78;
 
 public class Operator implements EmployeePosition {
-    Company company;
+    private Company company;
 
     public Operator(Company company) {
         this.company = company;

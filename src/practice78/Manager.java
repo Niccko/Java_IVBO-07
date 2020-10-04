@@ -1,7 +1,7 @@
 package practice78;
 
 public class Manager implements EmployeePosition {
-    Company company;
+    private Company company;
     double income;
     public Manager(Company company) {
         income = Math.random()*25000+115000;

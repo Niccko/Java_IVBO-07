@@ -1,7 +1,7 @@
 package practice78;
 
 public class TopManager implements EmployeePosition {
-    Company company;
+    private Company company;
 
     public TopManager(Company company) {
         this.company = company;
