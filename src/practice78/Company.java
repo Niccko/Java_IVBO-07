@@ -18,6 +18,8 @@ public class Company {
         employees.add(employee);
     };
 
+
+
     Employee getEmployeeById(int id){
         for (Employee emp:employees) {
             if(emp.getId() == id) return emp;
@@ -25,7 +27,9 @@ public class Company {
         return null;
     }
     void hireAll(List<Employee> employeeList){
-        employees.addAll(employeeList);
+        for (Employee emp:employeeList) {
+            hire(emp);
+        }
     }
 
     void fire(int id){

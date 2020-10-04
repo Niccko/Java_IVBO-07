@@ -29,7 +29,8 @@ public class Main {
             System.out.println(emp.getEmployeeSalary()+"   id = "+emp.getId() + "   "+emp.getPosition().getJobTitle());
         }
 
-        for (int i = 0; i < gogle.getEmployees().size()/2; i++) {
+        int empSize = gogle.getEmployees().size();
+        for (int i = 0; i < empSize; i++) {
             int id = gogle.getEmployeeId().get((int)(Math.random()*gogle.getEmployeeId().size()));
             gogle.fire(id);
         }
