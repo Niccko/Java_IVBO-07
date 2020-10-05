@@ -1,4 +1,4 @@
-package practice78;
+package practice7_8;
 
 public class Operator implements EmployeePosition {
     private Company company;
