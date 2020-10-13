@@ -91,12 +91,8 @@ public class App extends JFrame {
                 }
             });
         }
-
-
-
+        
         add(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
     }
 }
