@@ -22,6 +22,7 @@ public class WithoutRegex {
 
         for (int i = 0; i < input.length(); i++) {
             boolean flag = false;
+
             for (String key:reps.keySet()) {
                 if(i+key.length()<input.length()) {
                     String subkey = input.substring(i, i+key.length());
@@ -29,6 +30,7 @@ public class WithoutRegex {
                         result.append(reps.get(key));
                         i += key.length() - 1;
                         flag = true;
+                        break;
                     }
                 }
             }
