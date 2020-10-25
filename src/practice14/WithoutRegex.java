@@ -24,7 +24,7 @@ public class WithoutRegex {
             boolean flag = false;
 
             for (String key:reps.keySet()) {
-                if(i+key.length()<input.length()) {
+                if(i+key.length()<=input.length()) {
                     String subkey = input.substring(i, i+key.length());
                     if (key.equals(subkey)) {
                         result.append(reps.get(key));
