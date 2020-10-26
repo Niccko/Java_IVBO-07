@@ -12,22 +12,23 @@ public class WithoutRegex {
         Scanner sc = new Scanner(System.in);
         int ruleCnt = Integer.parseInt(sc.nextLine());
         Map<String,String> reps = new HashMap<>();
-        ArrayList<String> rules = new ArrayList<>();
         String s[] = new String[2];
-
+        ArrayList<String> rules = new ArrayList<>();
         while(ruleCnt>0){
-            rules.add(sc.nextLine());
+            String inp = sc.nextLine();
+            rules.add(inp);
             ruleCnt--;
         }
 
-        String input = sc.nextLine();
+        String input = sc.next();
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
             boolean flag = false;
-            for (String key:rules) {
-                s = key.split(" ");
-                if(i+s[0].length()<=input.length()) {
+
+            for (String k:rules) {
+                s = k.split(" ");
+                if(i+s[0].length()<input.length()) {
                     String subkey = input.substring(i, i+s[0].length());
                     if (s[0].equals(subkey)) {
                         result.append(s[1]);
@@ -43,4 +44,3 @@ public class WithoutRegex {
 
     }
 }
-
