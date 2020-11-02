@@ -1,10 +1,8 @@
-package practice16;
+package practice17;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class Main {
     static PrintWriter pw;

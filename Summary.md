@@ -607,15 +607,13 @@ public class Structure {
     }
 }
 ```
-##### C:\Users\Admin\IdeaProjects\Java_IVBO-07/src/practice16/Main.java
+##### C:\Users\Admin\IdeaProjects\Java_IVBO-07/src/practice17/Main.java
 ```java
-package practice16;
+package practice17;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class Main {
     static PrintWriter pw;
@@ -639,7 +637,6 @@ public class Main {
         if(file.isFile() ) {
             if (file.getName().substring(file.getName().lastIndexOf(".")).equals(".java")) {
                 try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-                    System.out.println(file.getName());
                     pw.write("##### " + path + "\n```java\n");
                     String line = reader.readLine();
                     while (line != null) {
