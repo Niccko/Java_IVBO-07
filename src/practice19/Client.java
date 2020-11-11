@@ -40,6 +40,7 @@ public class Client {
         Thread receive = new Thread(receiveThread);
         send.start();
         receive.start();
+        sendMessage("//checkUser","127.0.0.1",9888);
     }
 
     public static void sendMessage(String message, String address, int port) throws IOException {

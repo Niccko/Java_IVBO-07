@@ -55,6 +55,11 @@ public class Server {
                 users.remove(ip);
                 System.out.println("User '"+ip.toString()+"' left the chat.");
                 break;
+            case "checkUser":
+                if(!users.containsKey(ip)){
+                    sendMessage("Enter your nickname: ",ip.toString(),sendPort);
+                }
+                break;
             default:
                 sendMessage("Server: Invalid command", ip.toString(), sendPort);
         }
@@ -79,11 +84,11 @@ public class Server {
                 }
 
                 String data = new String(packet.getData(), 0, packet.getLength());
-                if(!users.containsKey(packet.getAddress())){
+                if(data.startsWith("//")){
+                    executeCommand(data.substring(2),packet.getAddress());
+                } else if(!users.containsKey(packet.getAddress())){
                     users.put(packet.getAddress(),data);
                     System.out.println("User registered: Name: "+data+", IP: "+packet.getAddress());
-                } else if(data.startsWith("//")){
-                    executeCommand(data.substring(2),packet.getAddress());
                 } else {
                     data = new SimpleDateFormat("HH:mm:ss").format(new Date())+" | "+users.get(packet.getAddress())+": "+data;
                     pw.write(data+"\n");
