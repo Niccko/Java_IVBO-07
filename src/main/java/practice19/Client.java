@@ -1,8 +1,12 @@
 package practice19;
 
-import javax.xml.crypto.Data;
+
+import practice10.App;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.*;
+import java.security.Guard;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -40,6 +44,7 @@ public class Client {
         Thread receive = new Thread(receiveThread);
         send.start();
         receive.start();
+
         sendMessage("//checkUser","127.0.0.1",9888);
     }
 

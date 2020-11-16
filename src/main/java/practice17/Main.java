@@ -35,8 +35,6 @@ public class Main {
                     pw.write("```\n");
 
 
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
