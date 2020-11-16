@@ -78,10 +78,7 @@ public class Server {
                 DatagramPacket packet = new DatagramPacket(messageData, 0, messageData.length);
 
                 try {
-                    socket.receive(packet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    socket.receive(packet); } catch (IOException e) { e.printStackTrace(); }
 
                 String data = new String(packet.getData(), 0, packet.getLength());
                 if(data.startsWith("//")){
