@@ -1,15 +1,32 @@
-package practice21;
+package practice2122;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        JsonServer JServer = new JsonServer();
+        ItemsStore storage;
         String command;
         Scanner sc = new Scanner(System.in);
+        System.out.println("Choose storage type\n-Server\n-File");
+        command = sc.next();
+        command = command.toLowerCase();
+        while(!command.equals("server")&&!command.equals("file"))
+        {
+            System.out.println("Invalid type!");
+            System.out.println("Choose storage type\n-Server\n-File");
+            command = sc.next();
+            command = command.toLowerCase();
+        }
+        if(command.equals("server")){
+            storage = new JsonServer();
+        } else {
+            System.out.println("aaaaaa");
+            storage = new JsonFile();
+        }
+        System.out.println("Chosen storage type: "+command);
+        System.out.println("Type 'help' to see a list of available commands");
         while (true){
             command = sc.nextLine();
             switch (command){
@@ -25,16 +42,20 @@ public class Main {
                     isGood = sc.nextBoolean();
                     System.out.print("Item description: ");
                     description = sc.next();
-                    System.out.println(JServer.addItem(new Item(id, data, isGood, description)));
+                    System.out.println("Item added: "+storage.addItem(new Item(id, data, isGood, description)));
                     break;
                 case "get":
                     System.out.print("Enter item id: ");
                     int getId = sc.nextInt();
-                    Item respond = JServer.get(getId);
-                    System.out.println(respond);
+                    Item respond = storage.get(getId);
+                    if (respond==null) {
+                        System.out.println("Item not found");
+                    } else {
+                        System.out.println(respond);
+                    }
                     break;
                 case "getAll":
-                    List<Item> items = JServer.getAll();
+                    List<Item> items = storage.getAll();
                     for (Object i: items) {
                         System.out.println(i);
                     }
@@ -42,7 +63,7 @@ public class Main {
                 case "edit":
                     System.out.print("Enter item id: ");
                     int editId = sc.nextInt();
-                    Item currItem = JServer.get(editId);
+                    Item currItem = storage.get(editId);
                     int e_id;
                     String e_data, e_description;
                     boolean e_isGood;
@@ -55,15 +76,25 @@ public class Main {
                     e_isGood = sc.nextBoolean();
                     System.out.print("Enter new item description: ");
                     e_description = sc.next();
-                    JServer.editItem(new Item(e_id,e_data,e_isGood,e_description),editId);
+                    storage.editItem(new Item(e_id,e_data,e_isGood,e_description),editId);
                     break;
                 case "delete":
                     System.out.print("Enter item id: ");
                     int deleteId = sc.nextInt();
-                    JServer.deleteItem(deleteId);
+                    if(storage.get(deleteId)!=null)
+                        System.out.println("Item with id "+deleteId+" was deleted");
+                    storage.deleteItem(deleteId);
                     break;
-
+                case "help":
+                    System.out.println("Available commands\n" +
+                            "get - returns a specified item\n" +
+                            "getAll - return all items in the storage\n" +
+                            "add - add new item to the storage\n" +
+                            "edit - edit the specified item\n" +
+                            "delete - delete a specified item");
+                    break;
             }
         }
+
     }
 }

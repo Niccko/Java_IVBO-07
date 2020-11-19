@@ -1,9 +1,7 @@
-package practice21;
+package practice2122;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;

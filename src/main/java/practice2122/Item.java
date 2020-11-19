@@ -1,4 +1,4 @@
-package practice21;
+package practice2122;
 
 public class Item {
     private int id;
@@ -36,6 +36,7 @@ public class Item {
     public void setGood(boolean good) {
         isGood = good;
     }
+
 
     public String getDescription() {
         return description;
