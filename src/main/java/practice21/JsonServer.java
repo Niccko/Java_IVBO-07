@@ -1,6 +1,7 @@
 package practice21;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -17,8 +18,14 @@ public class JsonServer implements ItemsStore {
 
 
     @Override
-    public List<Item> getAll() {
-        return null;
+    public List<Item> getAll() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(URL))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        List<Item> itemList = gson.fromJson(response.body(),List.class);
+        return itemList;
     }
 
     @Override
@@ -46,9 +53,11 @@ public class JsonServer implements ItemsStore {
 
     @Override
     public Item editItem(Item item, int id) throws IOException, InterruptedException {
+        System.out.println(gson.toJson(item));
         HttpRequest request = HttpRequest.newBuilder()
                 .PUT(HttpRequest.BodyPublishers.ofString(gson.toJson(item)))
-                .uri(URI.create(URL))
+                .uri(URI.create(URL+"/"+id))
+                .setHeader("Content-Type", "application/json")
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         return get(item.getId());
