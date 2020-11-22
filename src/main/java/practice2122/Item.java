@@ -51,8 +51,7 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", data='" + data + '\'' +
-                ", isGood=" + isGood +
-                ", description='" + description + '\'' +
+                ", isGood=" + isGood + '\'' +
                 '}';
     }
 }

@@ -22,7 +22,6 @@ public class Main {
         if(command.equals("server")){
             storage = new JsonServer();
         } else {
-            System.out.println("aaaaaa");
             storage = new JsonFile();
         }
         System.out.println("Chosen storage type: "+command);
@@ -51,7 +50,7 @@ public class Main {
                     if (respond==null) {
                         System.out.println("Item not found");
                     } else {
-                        System.out.println(respond);
+                        System.out.println(respond+" Description: "+respond.getDescription());
                     }
                     break;
                 case "getAll":
