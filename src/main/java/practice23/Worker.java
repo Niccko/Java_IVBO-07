@@ -28,6 +28,7 @@ public class Worker {
     Writer pw;
     FileReader fr;
     JsonReader jr;
+    List<Integer> ids;
 
     public Worker() {
         try {
@@ -42,6 +43,8 @@ public class Worker {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Type type = new TypeToken<List<Integer>>(){}.getType();
+        ids = gson.fromJson(jr,type);
     }
 
     public void getTasks() {
@@ -79,14 +82,13 @@ public class Worker {
             case "*":
                 return a*b;
             case "/":
-                return (double) a/b;
+                return Math.ceil(((double) a/b)/100)*100;
         }
         return 0;
     }
 
     public void doTasks(){
-        Type type = new TypeToken<List<Integer>>(){}.getType();
-        List<Integer> ids = gson.fromJson(jr,type);
+
         for (JsonObject task:tasks) {
             if(!ids.contains(task.get("id").getAsInt())) {
                 System.out.println(task.get("taskDescription")+" performed.");
