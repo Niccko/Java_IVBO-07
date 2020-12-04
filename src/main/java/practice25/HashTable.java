@@ -1,5 +1,7 @@
 package practice25;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class HashTable<K,V> implements HashMapInterface<K,V>{
@@ -27,6 +29,10 @@ public class HashTable<K,V> implements HashMapInterface<K,V>{
         } else {
             buckets[bucket] = new Entry<>(key,value);
         }
+        int i = 0;
+        while(buckets[i]==null) i++;
+        curPtr = buckets[i];
+        bucketIndex=i;
     }
 
     @Override
@@ -59,28 +65,46 @@ public class HashTable<K,V> implements HashMapInterface<K,V>{
         return ptr.getValue();
     }
     class HashIterator implements Iterator<Entry<K, V>> {
+        private final HashTable<K,V> ht;
 
+        HashIterator(HashTable<K,V> ht){
+            this.ht = ht;
+        }
         @Override
         public boolean hasNext() {
-            if (curPtr.getNext() != null) {
-                return true;
-            } else if (bucketIndex < capacity - 1) {
-                return buckets[bucketIndex] != null;
+            if(curPtr!=null) {
+                if (curPtr.getNext() != null) {
+                    return true;
+                } else if (bucketIndex < ht.capacity - 1) {
+
+                    return buckets[bucketIndex] != null;
+                }
             }
+            int i = 0;
+            while(i<capacity-1&&buckets[i]==null) i++;
+            curPtr = buckets[i];
+            bucketIndex=i;
             return false;
         }
 
         @Override
         public Entry<K, V> next() {
             if (curPtr.getNext() != null) {
-                return curPtr.getNext();
+                return curPtr = curPtr.getNext();
             } else
-                return buckets[bucketIndex];
+            {
+                Entry k = buckets[bucketIndex];
+                int i = bucketIndex+1;
+                while(i<capacity-1&&buckets[i]==null) i++;
+                curPtr = buckets[i];
+                bucketIndex=i;
+                return k;
+            }
         }
     }
     @Override
     public Iterator<Entry<K, V>> iterator() {
-        return new HashIterator();
+        return new HashIterator(this);
     }
 
 }
