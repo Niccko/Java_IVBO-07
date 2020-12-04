@@ -1,0 +1,86 @@
+package practice25;
+
+import java.util.Iterator;
+
+public class HashTable<K,V> implements HashMapInterface<K,V>{
+    private final int capacity = 128;
+    Entry<K,V>[] buckets;
+    Entry<K,V> curPtr;
+    int bucketIndex = 0;
+
+
+    public HashTable() {
+        buckets = new Entry[capacity];
+    }
+
+    public int keyHash(K key){
+        return key.hashCode()>>2;
+    }
+
+    @Override
+    public void add(K key, V value) {
+        int bucket = keyHash(key)%capacity;
+        Entry<K,V> ptr = buckets[bucket];
+        if(ptr != null){
+            while(ptr.hasNext()) ptr = ptr.getNext();
+            ptr.setNext(new Entry<>(key,value));
+        } else {
+            buckets[bucket] = new Entry<>(key,value);
+        }
+    }
+
+    @Override
+    public V get(K key) {
+        int bucket = keyHash(key)%capacity;
+        Entry<K,V> ptr = buckets[bucket];
+        if(ptr!=null){
+            while(!key.equals(ptr.getKey())) {
+                ptr = ptr.getNext();
+                if(ptr==null) break;
+            }
+        }
+        if(ptr!=null) return ptr.getValue();
+        return null;
+    }
+
+    @Override
+    public V remove(K key) {
+        int bucket = keyHash(key)%capacity;
+        Entry<K,V> ptr = buckets[bucket];
+        if(ptr==null) return null;
+        if (key.equals(ptr.getKey())) {
+            buckets[bucket] = ptr.getNext();
+            return ptr.getValue();
+        }
+        while(!key.equals(ptr.getNext().getKey())) {
+            ptr = ptr.getNext();
+            if(ptr.getNext() == null) break;
+        }
+        return ptr.getValue();
+    }
+    class HashIterator implements Iterator<Entry<K, V>> {
+
+        @Override
+        public boolean hasNext() {
+            if (curPtr.getNext() != null) {
+                return true;
+            } else if (bucketIndex < capacity - 1) {
+                return buckets[bucketIndex] != null;
+            }
+            return false;
+        }
+
+        @Override
+        public Entry<K, V> next() {
+            if (curPtr.getNext() != null) {
+                return curPtr.getNext();
+            } else
+                return buckets[bucketIndex];
+        }
+    }
+    @Override
+    public Iterator<Entry<K, V>> iterator() {
+        return new HashIterator();
+    }
+
+}
