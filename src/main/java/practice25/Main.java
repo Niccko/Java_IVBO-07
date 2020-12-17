@@ -7,16 +7,12 @@ public class Main {
         numbers.add("Two",2);
         numbers.add("Three",3);
         numbers.add("One",1);
+        numbers.add("One",1);
+        numbers.add("One",1);
+        numbers.add("One",123);
+        numbers.add("One",1231);
         numbers.add("Four",4);
-        System.out.println("/////");
-        for (Entry k : numbers) {
-            System.out.println(k.getValue());
-        }
-        System.out.println("/////");
-        System.out.println(numbers.get("One"));
-        for (Entry k : numbers) {
-            System.out.println(k.getValue());
-        }
+
     }
 
 }

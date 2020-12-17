@@ -24,7 +24,14 @@ public class HashTable<K,V> implements HashMapInterface<K,V>{
         int bucket = keyHash(key)%capacity;
         Entry<K,V> ptr = buckets[bucket];
         if(ptr != null){
-            while(ptr.hasNext()) ptr = ptr.getNext();
+            while(true) {
+                if(ptr.getKey().equals(key)){
+                    ptr.setValue(value);
+                    return;
+                }
+                if(!ptr.hasNext()) break;
+                ptr = ptr.getNext();
+            }
             ptr.setNext(new Entry<>(key,value));
         } else {
             buckets[bucket] = new Entry<>(key,value);
